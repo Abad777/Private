@@ -1,1 +1,56 @@
+#include <iostream>
+using namespace std;
 
+// Base class
+class Employee {
+protected:
+    string name;
+    double salary;  // Protected property
+
+public:
+    // Constructor
+    Employee(string n, double s) {
+        name = n;
+        salary = s;
+    }
+
+    // Method to show employee info
+    void showInfo() {
+        cout << "Employee Name: " << name << endl;
+        cout << "Salary: " << salary << endl;
+    }
+};
+
+// Derived class
+class Manager : public Employee {
+private:
+    string department;
+
+public:
+    // Constructor
+    Manager(string n, double s, string dept) : Employee(n, s) {
+        department = dept;
+    }
+
+    // Method to show manager info
+    void showManagerInfo() {
+        // Can access protected properties directly
+        cout << "Manager Name: " << name << endl;
+        cout << "Salary: " << salary << endl;
+        cout << "Department: " << department << endl;
+    }
+};
+
+int main() {
+    // Create Manager object
+    Manager mgr("Ali", 80000, "IT");
+
+    // Access info via method
+    mgr.showManagerInfo();
+
+    // Direct access to protected members is not allowed outside the class ❌
+    // cout << mgr.name;      // ❌ Error
+    // cout << mgr.salary;    // ❌ Error
+
+    return 0;
+}
