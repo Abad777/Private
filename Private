@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+class BankAccount {
+private:
+    string holder;
+    double balance; // Private property
+
+public:
+    // Constructor
+    BankAccount(string h, double b) {
+        holder = h;
+        balance = b;
+    }
+
+    // Method to deposit amount
+    void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            cout << "Amount deposited successfully!" << endl;
+        } else {
+            cout << "Invalid deposit amount." << endl;
+        }
+    }
+
+    // Method to show balance
+    void showBalance() {
+        cout << "Account Holder: " << holder << endl;
+        cout << "Current Balance: " << balance << endl;
+    }
+};
+
+int main() {
+    // Creating object
+    BankAccount acc1("Ayesha", 10000);
+
+    // Trying to access private variable directly ❌ (will cause error)
+    // cout << acc1.balance;   // Not allowed
+
+    // Accessing through method ✅
+    acc1.showBalance();
+
+    // Depositing money
+    acc1.deposit(5000);
+
+    // Showing updated balance
+    acc1.showBalance();
+
+    return 0;
+}
